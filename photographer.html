@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>Fisheye - photographe</title>
+  </head>
+
+  <body>
+    <header>
+      <img src="assets/images/logo.png" class="logo" />
+    </header>
+    <main id="main">
+      <div class="photograph-header">
+        <button class="contact_button" onclick="displayModal()">
+          Contactez-moi
+        </button>
+      </div>
+
+      <div class="sorting-section">
+        <label for="sortByOptions">Trier par</label>
+        <select name="sortedOption" id="sortByOptions">
+          <option value="date">Date</option>
+          <option value="popularite">Popularité</option>
+          <option value="titre">Titre</option>
+        </select>
+      </div>
+      <div id="photographerdetail"></div>
+      <div id="media"></div>
+    </main>
+    <div id="modal_contact" class="modal_contact">
+      <div
+        class="modal_inner"
+        aria-hidden="true"
+        role="dialog"
+        aria-label="Formulaire de contact"
+      >
+        <img
+          class="close"
+          src="assets/icons/close.svg"
+          onclick="closeModal()"
+        />
+        <div class="modal_body">
+          <div class="modal_heading">
+            <h2>Contactez-moi</h2>
+            <h2>Ellie-Rose Wilkens</h2>
+          </div>
+          <form>
+            <div class="form-group">
+              <label for="">Prénom</label>
+              <input type="text" />
+            </div>
+            <div class="form-group">
+              <label for="">Nom</label>
+              <input type="text" />
+            </div>
+            <div class="form-group">
+              <label for="">E-mail</label>
+              <input type="text" />
+            </div>
+            <div class="form-group">
+              <label for="">Votre message</label>
+              <textarea></textarea>
+            </div>
+            <div>
+              <input
+                class="submit_button"
+                type="submit"
+                value="Envoyer le formulaire"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="lightbox_modal" class="lightbox_modal">
+      <div
+        class="lightbox_modal-inner"
+        aria-hidden="true"
+        role="dialog"
+        aria-label="Aperçu de l'image ou de la vidéo"
+      >
+        <span
+          class="lightbox_close-button"
+          id="lightbox_close"
+          title="Previous image"
+          aria-label="Image précedente"
+        ></span>
+        <span
+          class="lightbox_nextbutton"
+          title="Next image"
+          aria-label="Image suivante"
+        ></span>
+        <span
+          id="previewbutton"
+          class="lightbox_modal_previousbutton"
+          title="Previous image"
+          aria-label="Image précedente"
+          tabindex="0"
+        ></span>
+
+        <div class="lightbox_inner_container">
+          <div
+            id="imagecontainer"
+            class="lightbox_container_picture"
+            aria-label="Image ou vidéo"
+          ></div>
+          <h2
+            class="lightbox_container_title"
+            aria-label="Titre de l'image ou de la vidéo"
+          >
+            Name
+          </h2>
+        </div>
+        <span
+          class="lightbox_modal_nextbutton"
+          title="Next Icon image"
+          aria-label="Image précedente"
+          tabindex="0"
+        ></span>
+      </div>
+    </div>
+    <footer class="bottom--photographerpage">
+      <div class="bottom_bar">
+        <div class="bottom_bar_likes">
+          <h2
+            class="bottom_bar_likes_number"
+            aria-label="Nombre total de likes du photographe"
+          ></h2>
+          <div class="bottom_bar_likes_heart">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+        <h2
+          class="bottom_bar_price"
+          aria-label="Prix journalier du photographe"
+        ></h2>
+      </div>
+    </footer>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="./scripts/utils/lightbox.js"></script>
+  </body>
+</html>
