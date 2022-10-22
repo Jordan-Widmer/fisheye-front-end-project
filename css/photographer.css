@@ -1,6 +1,7 @@
 body {
   position: relative;
 }
+
 #contact_modal {
   display: none;
 }
@@ -77,6 +78,7 @@ form input {
   border: none;
   border-radius: 5px;
 }
+
 .bottom--photographerpage {
   position: fixed;
   width: 300px;
@@ -86,24 +88,29 @@ form input {
   padding: 5px 18px;
   background-color: #db8876;
 }
+
 .bottom_bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .bottom_bar_likes {
   display: flex;
   align-items: center;
 }
+
 .bottom_bar_likes_number {
   margin-right: 10px;
 }
+
 .photographer_name {
   color: #d3573c;
   transition: color 300ms;
   margin: 2px;
   font-size: 64px;
 }
+
 .photographer_location {
   color: #901c1c;
   margin: 2px;
@@ -113,6 +120,7 @@ form input {
 .photographer_detail {
   font-size: 18px;
 }
+
 #sortByOptions {
   width: 180px;
   height: 40px;
@@ -125,6 +133,7 @@ form input {
 #sortByOptions option {
   height: 20px;
 }
+
 .modal_contact {
   display: none;
   width: 100%;
@@ -145,10 +154,12 @@ form input {
   transform: translate(-50%, -30px);
   padding: 30px;
 }
+
 .close {
   display: block;
   margin-left: auto;
 }
+
 .modal_heading h2 {
   font-weight: normal;
   font-size: 40px;
@@ -158,9 +169,11 @@ form input {
   font-size: 16px;
   font-weight: bold;
 }
+
 .form-group input {
   height: 50px;
 }
+
 .form-group textarea {
   width: 100%;
   height: 70px;
@@ -171,6 +184,7 @@ form input {
   background-color: #901c1c;
   color: white;
 }
+
 .lightbox_modal {
   display: none;
   width: 100%;
@@ -188,6 +202,7 @@ form input {
   display: flex;
   flex-wrap: wrap;
 }
+
 .lightbox_modal-inner {
   width: 80%;
   position: absolute;
@@ -196,6 +211,7 @@ form input {
   transform: translate(-50%, 40px);
   padding: 30px;
 }
+
 .lightbox_container_picture {
   width: 100%;
   height: 100%;
@@ -206,6 +222,7 @@ form input {
   height: 100%;
   object-fit: contain;
 }
+
 .lightbox_inner_container {
   margin: 0 auto;
   width: 50%;
@@ -215,6 +232,7 @@ form input {
   justify-content: center;
   align-items: center;
 }
+
 .lightbox_container_title {
   align-self: flex-start;
   color: #901c1c;
@@ -228,6 +246,7 @@ form input {
   cursor: pointer;
   z-index: 2;
 }
+
 .lightbox_close-button:before,
 .lightbox_close-button:after {
   position: absolute;
@@ -236,12 +255,15 @@ form input {
   content: " ";
   background-color: #901c1c;
 }
+
 .lightbox_close-button:before {
   transform: rotate(45deg);
 }
+
 .lightbox_close-button:after {
   transform: rotate(-45deg);
 }
+
 .lightbox_modal_previousbutton {
   position: absolute;
   top: 50%;
@@ -259,11 +281,13 @@ form input {
   content: " ";
   background-color: #901c1c;
 }
+
 .lightbox_modal_previousbutton:before {
   transform: rotate(-45deg);
   top: calc(50% - 13px + 9px);
   left: calc(50% - 4px);
 }
+
 .lightbox_modal_previousbutton:after {
   transform: rotate(45deg);
   top: calc(50% - 13px - 9px);
@@ -302,6 +326,7 @@ form input {
   top: calc(50% - 13px + 9px);
   right: calc(50% - 4px);
 }
+
 .lightbox_modal_nextbutton:after {
   transform: rotate(-45deg);
   top: calc(50% - 13px - 9px);

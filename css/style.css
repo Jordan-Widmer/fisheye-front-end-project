@@ -17,9 +17,11 @@ h1 {
   color: #901c1c;
   margin-right: 100px;
 }
+
 a {
   text-decoration: none;
 }
+
 .logo {
   height: 50px;
   margin-left: 100px;
@@ -55,6 +57,7 @@ a {
   margin: 0px;
   padding: 0px;
 }
+
 .photographer_section div h5 {
   font-size: 14px;
   margin: 0px;
@@ -63,6 +66,7 @@ a {
   color: #525252;
   text-decoration: none;
 }
+
 .photographer_section div h6 {
   font-size: 14px;
   margin: 0px;
@@ -70,6 +74,7 @@ a {
   color: #757575;
   text-decoration: none;
 }
+
 .photographer_section div img {
   height: 200px;
   width: 200px;
@@ -83,10 +88,12 @@ a {
 .photographer_section div a:hover h2 {
   color: #901c1c;
 }
+
 .photographer_section div img:hover {
   transform: scale(1.05);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
 }
+
 /* .photographer_section div .photographer_section div h2:hover {
     color: #901C1C;
 } */
@@ -99,6 +106,7 @@ a {
   justify-content: start;
   align-items: center;
 }
+
 .card img {
   width: 100%;
   height: 300px;
@@ -114,9 +122,11 @@ a {
   object-fit: cover;
   border-radius: 5px;
 }
+
 .card img:hover {
   transform: scale(1.04);
 }
+
 .cardbody {
   display: flex;
   align-items: center;
@@ -125,22 +135,27 @@ a {
   width: 100%;
   padding: 10px 15px;
 }
+
 .card-icon {
   font-size: 18px;
   margin-right: 7px;
 }
+
 .card-icon:hover {
   transform: scale(1.2);
 }
+
 main {
   width: 80%;
   margin: 0 auto;
 }
+
 .photographer-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
 .photographer-img {
   width: 200px;
   height: 200px;
@@ -155,6 +170,7 @@ main {
   display: flex;
   align-items: center;
 }
+
 .card-heading {
   font-size: 24px;
   margin: 0px;
