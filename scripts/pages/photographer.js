@@ -64,7 +64,6 @@ function renderPhotographer(photographer, photoMedia) {
 function showMediaCards(photoMedia, photographerr) {
   const container = document.getElementById("media");
   container.innerHTML = "";
-  console.log(photoMedia, photographerr);
   let totalLikes = 0;
   photoMedia.forEach((m) => {
     totalLikes += m.likes;
@@ -87,6 +86,7 @@ function showMediaCards(photoMedia, photographerr) {
       cardImg.height = 400;
       cardImg.alt = m.title;
       mediaElement = cardImg;
+      mediaElement.setAttribute("tabindex", 0);
     } else if (m.video) {
       const video = document.createElement("video");
       video.height = 300;
@@ -96,11 +96,13 @@ function showMediaCards(photoMedia, photographerr) {
       video.controls = false;
       video.muted = false;
       mediaElement = video;
+      mediaElement.setAttribute("tabindex", 0);
     }
 
     heading.textContent = m.title;
     heading.classList.add("card-heading");
     icon.classList.add("fas", "fa-heart", "card-icon");
+    icon.setAttribute("tabindex", 0);
     countSpan.textContent = m.likes;
     countSpan.id = m.id;
     icon.addEventListener("click", () => {
@@ -114,6 +116,22 @@ function showMediaCards(photoMedia, photographerr) {
           +document.getElementsByClassName("bottom_bar_likes_number")[0]
             .innerHTML + 1
         );
+      }
+    });
+
+    icon.addEventListener("keydown", function (event) {
+      if (event.key == "Enter") {
+        const likeCounts = document.getElementById(m.id);
+        console.log(likeCounts);
+        if (likeCounts) {
+          likeCounts.innerHTML = +likeCounts.innerHTML + 1;
+          let index = photoMedia.findIndex((x) => x.id == m.id);
+          photoMedia[index].likes = +photoMedia[index].likes + 1;
+          showLikes(
+            +document.getElementsByClassName("bottom_bar_likes_number")[0]
+              .innerHTML + 1
+          );
+        }
       }
     });
 
@@ -140,13 +158,10 @@ async function getPhotographers() {
   await fetch("/data/photographers.json")
     .then((response) => {
       if (response.ok) {
-        console.log("getting data...");
         return response.json();
       }
     })
     .then((value) => {
-      console.log("getting data...value");
-      console.log(value);
       data = value;
     })
     .catch(function (error) {

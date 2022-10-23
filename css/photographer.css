@@ -7,7 +7,7 @@ body {
 }
 
 .photograph-header {
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   height: 300px;
   margin: 0 100px;
 }
@@ -20,14 +20,14 @@ body {
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901c1c;
+  background-color: #901C1C;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .modal {
   border-radius: 5px;
-  background-color: #db8876;
+  background-color: #DB8876;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -60,7 +60,7 @@ form {
 }
 
 form label {
-  color: #312e2e;
+  color: #312E2E;
   font-size: 36px;
 }
 
@@ -86,7 +86,7 @@ form input {
   right: 30px;
   border-radius: 5px;
   padding: 5px 18px;
-  background-color: #db8876;
+  background-color: #DB8876;
 }
 
 .bottom_bar {
@@ -105,14 +105,14 @@ form input {
 }
 
 .photographer_name {
-  color: #d3573c;
+  color: #D3573C;
   transition: color 300ms;
   margin: 2px;
   font-size: 64px;
 }
 
 .photographer_location {
-  color: #901c1c;
+  color: #901C1C;
   margin: 2px;
   font-size: 24px;
 }
@@ -124,7 +124,7 @@ form input {
 #sortByOptions {
   width: 180px;
   height: 40px;
-  background: #901c1c;
+  background: #901C1C;
   color: #fff;
   border: none;
   outline: none;
@@ -147,7 +147,7 @@ form input {
 
 .modal_inner {
   width: 50%;
-  background-color: #db8876;
+  background-color: #DB8876;
   position: absolute;
   top: 30px;
   left: 50%;
@@ -181,7 +181,7 @@ form input {
 
 .submit_button {
   width: 200px;
-  background-color: #901c1c;
+  background-color: #901C1C;
   color: white;
 }
 
@@ -195,6 +195,7 @@ form input {
   top: 0px;
   left: 0px;
 }
+
 
 #media {
   width: 100%;
@@ -235,7 +236,7 @@ form input {
 
 .lightbox_container_title {
   align-self: flex-start;
-  color: #901c1c;
+  color: #901C1C;
 }
 
 .lightbox_close-button {
@@ -253,7 +254,7 @@ form input {
   width: 5px;
   height: 40px;
   content: " ";
-  background-color: #901c1c;
+  background-color: #901C1C;
 }
 
 .lightbox_close-button:before {
@@ -279,7 +280,12 @@ form input {
   width: 5px;
   height: 30px;
   content: " ";
-  background-color: #901c1c;
+  background-color: #901C1C;
+}
+
+.disable:before,
+.disable:after {
+  background-color: #C4C4C4 !important;
 }
 
 .lightbox_modal_previousbutton:before {
@@ -318,7 +324,7 @@ form input {
   width: 5px;
   height: 30px;
   content: " ";
-  background-color: #901c1c;
+  background-color: #901C1C;
 }
 
 .lightbox_modal_nextbutton:before {

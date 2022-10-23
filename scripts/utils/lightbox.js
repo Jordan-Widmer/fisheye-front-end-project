@@ -1,4 +1,7 @@
 export function initLightHouse() {
+  const lightboxModalContent = document.getElementById("lightbox_modal-inner");
+  lightboxModalContent.setAttribute("aria-hidden", "false");
+
   const closeButton = document.getElementById("lightbox_close");
   closeButton.addEventListener("click", closeLightBoxModal);
 
@@ -10,7 +13,6 @@ export function initLightHouse() {
   )[0];
   const galleryElements = document.querySelectorAll(".card");
   galleryElements.forEach(function (galleryElement) {
-    console.log(galleryElement.children[0]);
     galleryElement.children[0].addEventListener("click", function () {
       // Display lightbox previous and next buttons if it is the first or the last picture
       if (galleryElement == galleryElements[0]) {
@@ -24,13 +26,27 @@ export function initLightHouse() {
       }
       openLightBoxModal();
     });
+
+    galleryElement.children[0].addEventListener("keydown", function (event) {
+      if (event.key == "Enter") {
+        if (galleryElement == galleryElements[0]) {
+          showImageInLightBox(galleryElement, true, false);
+        } else if (
+          galleryElement == galleryElements[galleryElements.length - 1]
+        ) {
+          showImageInLightBox(galleryElement, false, true);
+        } else {
+          showImageInLightBox(galleryElement, false, false);
+        }
+        openLightBoxModal();
+      }
+    });
   });
 
   previousButton.addEventListener("click", function () {
     const galleryElements = document.querySelectorAll(
       ".lightbox_container_picture"
     );
-    console.log(galleryElements);
     previousElement(galleryElements[0]);
   });
   nextButton.addEventListener("click", function () {
@@ -38,32 +54,51 @@ export function initLightHouse() {
     const galleryElements = document.querySelectorAll(
       ".lightbox_container_picture"
     );
-    console.log(galleryElements[0]);
     nextElement(galleryElements[0]);
   });
-  // window.addEventListener("keydown", function (event) {
-  //     if (
-  //         lightboxModalContent.getAttribute("aria-hidden") == "false" &&
-  //         event.key == "ArrowLeft"
-  //     ) {
-  //         previousElement(galleryElements[0]);
-  //     }
-  //     if (
-  //         lightboxModalContent.getAttribute("aria-hidden") == "false" &&
-  //         event.key == "ArrowRight"
-  //     ) {
-  //         nextElement(galleryElements[0]);
-  //     }
-  // });
+  window.addEventListener("keydown", function (event) {
+    const previewButton = document.getElementById("previewbutton");
+    const nextButton = document.getElementById("nextbutton");
+    if (
+      lightboxModalContent.getAttribute("aria-hidden") == "false" &&
+      event.key == "ArrowLeft"
+    ) {
+      previewButton.classList.remove("disable");
+      nextButton.classList.remove("disable");
+      const galleryElements = document.querySelectorAll(
+        ".lightbox_container_picture"
+      );
+      previousElement(galleryElements[0]);
+    }
+    if (
+      lightboxModalContent.getAttribute("aria-hidden") == "false" &&
+      event.key == "ArrowRight"
+    ) {
+      console.log("arrow right clicked...");
+      previewButton.classList.remove("disable");
+      nextButton.classList.remove("disable");
+      const galleryElements = document.querySelectorAll(
+        ".lightbox_container_picture"
+      );
+      nextElement(galleryElements[0]);
+    }
+  });
+
+  closeButton.tabIndex = "0";
+  previousButton.tabIndex = "0";
+  nextButton.tabIndex = "0";
 }
 
 function openLightBoxModal() {
   document.getElementById("lightbox_modal").style.display = "block";
+  changeTabIndexesBehindLightbox("-1");
 }
 
 function closeLightBoxModal() {
   document.getElementsByClassName("lightbox_modal")[0].style.display = "none";
   document.getElementById("imagecontainer").innerHTML = "";
+
+  changeTabIndexesBehindLightbox("0");
 }
 
 async function showImageInLightBox(element, firstpicture, lastpicture) {
@@ -86,81 +121,6 @@ async function showImageInLightBox(element, firstpicture, lastpicture) {
     videoNode.muted = true;
     document.getElementById("imagecontainer").appendChild(videoNode);
   }
-
-  // // Get photographer page information
-  // let pictureContent = picture.children[0];
-
-  // const lightboxPicture = document.querySelector(".lightbox_container_picture");
-  // const lightboxTitle = document.querySelector(".lightbox_container_title");
-
-  // // Apply information to lightbox content
-  // while (lightboxPicture.lastElementChild) {
-  //     // Reset at each opening: empty it if it already has a child
-  //     lightboxPicture.removeChild(lightboxPicture.lastElementChild);
-  // }
-  // let lightboxPictureContent = pictureContent.cloneNode(true);
-  // // Remove the miniature image and get video controls
-  // if (lightboxPictureContent.nodeName == "VIDEO") {
-  //     const lightboxPictureVideoSource = lightboxPictureContent.children[0];
-  //     lightboxPictureVideoSource.src =
-  //         lightboxPictureVideoSource.src.split("#")[0];
-  //     // Show controls on hover
-  //     lightboxPictureContent.addEventListener("mouseover", function () {
-  //         lightboxPictureContent.setAttribute("controls", "controls");
-  //     });
-  //     // Hide controls if not hover
-  //     lightboxPictureContent.addEventListener("mouseleave", function () {
-  //         lightboxPictureContent.removeAttribute("controls");
-  //     });
-  // }
-  // lightboxPicture.appendChild(lightboxPictureContent); // Put the new picture as child
-  // lightboxTitle.innerHTML = title.innerHTML;
-
-  // // Lightbox layout once the picture is displayed
-  // setTimeout(function () {
-  //     // Reset at each lightbox opening
-  //     lightboxTitle.style.width = "auto";
-  //     lightboxPicture.style.height = "100%";
-
-  //     if (lightboxPictureContent.nodeName != "VIDEO") {
-  //         // Align the title with the displayed picture (center if it is a video because natural dimensions are 0)
-  //         let titleWidth =
-  //             (lightboxPictureContent.naturalWidth * lightboxPictureContent.height) /
-  //             lightboxPictureContent.naturalHeight;
-  //         if (titleWidth > lightboxPictureContent.width) {
-  //             titleWidth = lightboxPictureContent.width;
-  //         }
-  //         lightboxTitle.style.width = titleWidth + "px";
-
-  //         // If picture is in landscape, bring title closer to the picture
-  //         if (
-  //             lightboxPictureContent.naturalWidth >
-  //             lightboxPictureContent.naturalHeight
-  //         ) {
-  //             let pictureHeight =
-  //                 (lightboxPictureContent.naturalHeight * titleWidth) /
-  //                 lightboxPictureContent.naturalWidth;
-  //             if (pictureHeight > lightboxPictureContent.height) {
-  //                 pictureHeight = lightboxPictureContent.height;
-  //             }
-  //             lightboxPicture.style.height = pictureHeight + "px";
-  //         }
-  //     }
-  // }, 50);
-
-  // const lightboxModalContent = document.querySelector(".lightbox_content");
-
-  // // Partially hide the previous button if the picture is the first
-  // if (firstpicture) {
-  //     lightboxModalContent.classList.add("boundary_firstelement");
-  // }
-  // // Partially hide the next button if the picture is the last
-  // else if (lastpicture) {
-  //     lightboxModalContent.classList.add("boundary_lastelement");
-  // } else {
-  //     lightboxModalContent.classList.remove("boundary_firstelement");
-  //     lightboxModalContent.classList.remove("boundary_lastelement");
-  // }
 }
 
 function getMediaType(media) {
@@ -169,6 +129,8 @@ function getMediaType(media) {
 }
 export async function previousElement(currentSource) {
   const galleryElements = document.querySelectorAll(".card");
+  const previewButton = document.getElementById("previewbutton");
+
   let sourceElement = await getSourceOrImageOrVideo(
     currentSource.children[0],
     false
@@ -181,17 +143,21 @@ export async function previousElement(currentSource) {
     );
     if (sourceElement == elementPictureSource) {
       if (i == 1) {
+        previewButton.classList.add("disable");
         await showImageInLightBox(galleryElements[i - 1], true, false);
       } else if (i == 0) {
-        console.log("disable button");
+        console.log("end of list");
+        previewButton.classList.add("disable");
+        // console.log(i)
+        // previewButton.classList.add("disable")
       } else {
+        previewButton.classList.remove("disable");
         await showImageInLightBox(galleryElements[i - 1], false, false);
       }
     }
   }
 }
 async function getSourceOrImageOrVideo(content, fromimage) {
-  console.log(content.nodeName);
   let contentSource;
   if (content.nodeName != "VIDEO") {
     contentSource = content.src;
@@ -205,6 +171,7 @@ async function getSourceOrImageOrVideo(content, fromimage) {
   return contentSource;
 }
 export async function nextElement(currentSource) {
+  const nextButton = document.getElementById("nextbutton");
   const galleryElements = document.querySelectorAll(".card");
   let sourceElement = await getSourceOrImageOrVideo(
     currentSource.children[0],
@@ -216,14 +183,44 @@ export async function nextElement(currentSource) {
       true
     );
     if (sourceElement == elementPictureSource) {
-      // Display lightbox previous and next buttons if it is the first or the last picture
       if (i == galleryElements.length - 2) {
+        nextButton.classList.add("disable");
         await showImageInLightBox(galleryElements[i + 1], false, true);
       } else if (i == galleryElements.length - 1) {
+        nextButton.classList.add("disable");
         console.log("You've reached the last picture.");
       } else {
+        nextButton.classList.remove("disable");
         await showImageInLightBox(galleryElements[i + 1], false, false);
       }
     }
   }
+}
+async function changeTabIndexesBehindLightbox(tabIndexValue) {
+  const searchbox = document.getElementById("sortByOptions");
+
+  const galleryElements = document.querySelectorAll(".card");
+  galleryElements.forEach(function (galleryElement) {
+    galleryElement.children[0].setAttribute("tabindex", tabIndexValue);
+    galleryElement.children[1].children[1].children[0].tabIndex = tabIndexValue;
+  });
+  // const headerLink = document.querySelector(".header_link");
+  // const presentationContact = document.querySelector(".presentation_contact");
+  // const sortingInput = document.querySelector(".sorting_input");
+  // const galleryElementPictures = document.querySelectorAll(
+  //     ".gallery_element_picture"
+  // );
+  // const galleryElementLegendLikesHearts = document.querySelectorAll(
+  //     ".gallery_element_legend_likes_heart"
+  // );
+
+  // headerLink.tabIndex = tabIndexValue;
+  // presentationContact.tabIndex = tabIndexValue;
+  // sortingInput.tabIndex = tabIndexValue;
+  // for (let i = 0; i < galleryElementPictures.length; i++) {
+  //     galleryElementPictures[i].tabIndex = tabIndexValue;
+  // }
+  // for (let j = 0; j < galleryElementLegendLikesHearts.length; j++) {
+  //     galleryElementLegendLikesHearts[j].tabIndex = tabIndexValue;
+  // }
 }

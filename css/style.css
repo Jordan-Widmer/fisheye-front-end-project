@@ -5,6 +5,7 @@ body {
   margin: 0;
 }
 
+
 header {
   display: flex;
   flex-direction: row;
@@ -14,7 +15,7 @@ header {
 }
 
 h1 {
-  color: #901c1c;
+  color: #901C1C;
   margin-right: 100px;
 }
 
@@ -44,18 +45,21 @@ a {
 }
 
 .photographer_section div h2 {
-  color: #d3573c;
+  color: #D3573C;
   font-size: 36px;
   margin: 0px;
   padding: 0px;
   transition: color 300ms;
 }
 
+
+
 .photographer_section div h4 {
   color: red;
   font-size: 20px;
   margin: 0px;
   padding: 0px;
+
 }
 
 .photographer_section div h5 {
@@ -86,7 +90,8 @@ a {
 }
 
 .photographer_section div a:hover h2 {
-  color: #901c1c;
+  color: #901C1C;
+
 }
 
 .photographer_section div img:hover {
@@ -131,7 +136,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #901c1c;
+  color: #901C1C;
   width: 100%;
   padding: 10px 15px;
 }
@@ -164,6 +169,7 @@ main {
 
 .photographer__link {
   text-decoration: none;
+
 }
 
 .card-icons {
