@@ -4,6 +4,11 @@ export function initLightHouse() {
 
   const closeButton = document.getElementById("lightbox_close");
   closeButton.addEventListener("click", closeLightBoxModal);
+  closeButton.addEventListener("keydown", function (event) {
+    if (event.key == "Enter") {
+      closeLightBoxModal();
+    }
+  });
 
   const nextButton = document.getElementsByClassName(
     "lightbox_modal_nextbutton"
@@ -48,9 +53,17 @@ export function initLightHouse() {
       ".lightbox_container_picture"
     );
     previousElement(galleryElements[0]);
+    const previewButton = document.getElementById("previewbutton");
+    const nextButton = document.getElementById("nextbutton");
+    previewButton.classList.remove("disable");
+    nextButton.classList.remove("disable");
   });
   nextButton.addEventListener("click", function () {
     console.log("clicked...");
+    const previewButton = document.getElementById("previewbutton");
+    const nextButton = document.getElementById("nextbutton");
+    previewButton.classList.remove("disable");
+    nextButton.classList.remove("disable");
     const galleryElements = document.querySelectorAll(
       ".lightbox_container_picture"
     );
@@ -59,12 +72,12 @@ export function initLightHouse() {
   window.addEventListener("keydown", function (event) {
     const previewButton = document.getElementById("previewbutton");
     const nextButton = document.getElementById("nextbutton");
+    previewButton.classList.remove("disable");
+    nextButton.classList.remove("disable");
     if (
       lightboxModalContent.getAttribute("aria-hidden") == "false" &&
       event.key == "ArrowLeft"
     ) {
-      previewButton.classList.remove("disable");
-      nextButton.classList.remove("disable");
       const galleryElements = document.querySelectorAll(
         ".lightbox_container_picture"
       );
@@ -75,8 +88,6 @@ export function initLightHouse() {
       event.key == "ArrowRight"
     ) {
       console.log("arrow right clicked...");
-      previewButton.classList.remove("disable");
-      nextButton.classList.remove("disable");
       const galleryElements = document.querySelectorAll(
         ".lightbox_container_picture"
       );
@@ -204,23 +215,4 @@ async function changeTabIndexesBehindLightbox(tabIndexValue) {
     galleryElement.children[0].setAttribute("tabindex", tabIndexValue);
     galleryElement.children[1].children[1].children[0].tabIndex = tabIndexValue;
   });
-  // const headerLink = document.querySelector(".header_link");
-  // const presentationContact = document.querySelector(".presentation_contact");
-  // const sortingInput = document.querySelector(".sorting_input");
-  // const galleryElementPictures = document.querySelectorAll(
-  //     ".gallery_element_picture"
-  // );
-  // const galleryElementLegendLikesHearts = document.querySelectorAll(
-  //     ".gallery_element_legend_likes_heart"
-  // );
-
-  // headerLink.tabIndex = tabIndexValue;
-  // presentationContact.tabIndex = tabIndexValue;
-  // sortingInput.tabIndex = tabIndexValue;
-  // for (let i = 0; i < galleryElementPictures.length; i++) {
-  //     galleryElementPictures[i].tabIndex = tabIndexValue;
-  // }
-  // for (let j = 0; j < galleryElementLegendLikesHearts.length; j++) {
-  //     galleryElementLegendLikesHearts[j].tabIndex = tabIndexValue;
-  // }
 }

@@ -51,8 +51,14 @@ function renderPhotographer(photographer, photoMedia) {
     photographerDetail.appendChild(photographerLocation);
     photographerDetail.appendChild(photographerTagLine);
 
-    photographerContainer.appendChild(photographerDetail);
-    photographerContainer.appendChild(photographerImage);
+    document
+      .getElementById("photorgapherinformation")
+      .appendChild(photographerDetail);
+    document
+      .getElementById("photographer-image")
+      .appendChild(photographerImage);
+    // photographerContainer.appendChild(photographerDetail)
+    // photographerContainer.appendChild(photographerImage)
 
     showMediaCards(photoMedia, photographerr);
 
@@ -105,22 +111,9 @@ function showMediaCards(photoMedia, photographerr) {
     icon.setAttribute("tabindex", 0);
     countSpan.textContent = m.likes;
     countSpan.id = m.id;
-    icon.addEventListener("click", () => {
-      const likeCounts = document.getElementById(m.id);
-      console.log(likeCounts);
-      if (likeCounts) {
-        likeCounts.innerHTML = +likeCounts.innerHTML + 1;
-        let index = photoMedia.findIndex((x) => x.id == m.id);
-        photoMedia[index].likes = +photoMedia[index].likes + 1;
-        showLikes(
-          +document.getElementsByClassName("bottom_bar_likes_number")[0]
-            .innerHTML + 1
-        );
-      }
-    });
-
-    icon.addEventListener("keydown", function (event) {
-      if (event.key == "Enter") {
+    icon.addEventListener(
+      "click",
+      () => {
         const likeCounts = document.getElementById(m.id);
         console.log(likeCounts);
         if (likeCounts) {
@@ -132,8 +125,29 @@ function showMediaCards(photoMedia, photographerr) {
               .innerHTML + 1
           );
         }
-      }
-    });
+      },
+      { once: true }
+    );
+
+    icon.addEventListener(
+      "keydown",
+      function (event) {
+        if (event.key == "Enter") {
+          const likeCounts = document.getElementById(m.id);
+          console.log(likeCounts);
+          if (likeCounts) {
+            likeCounts.innerHTML = +likeCounts.innerHTML + 1;
+            let index = photoMedia.findIndex((x) => x.id == m.id);
+            photoMedia[index].likes = +photoMedia[index].likes + 1;
+            showLikes(
+              +document.getElementsByClassName("bottom_bar_likes_number")[0]
+                .innerHTML + 1
+            );
+          }
+        }
+      },
+      { once: true }
+    );
 
     cardIcons.appendChild(icon);
     cardIcons.appendChild(countSpan);

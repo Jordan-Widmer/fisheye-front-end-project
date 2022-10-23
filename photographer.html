@@ -12,22 +12,28 @@
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <a href="./index.html"><img tabindex="0" src="assets/images/logo.png" class="logo" /></a>
   </header>
   <main id="main">
-    <div class="photograph-header">
+
+    <div id="photographerdetail">
+
+      <div id="photorgapherinformation"></div>
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div id="photographer-image">
+
+      </div>
     </div>
 
     <div class="sorting-section">
-      <label tabindex="0" for="sortByOptions">Trier par</label>
-      <select tabindex="0" name="sortedOption" id="sortByOptions">
+      <label tabindex="0" for="sortByOptions" style="font-weight: 600; font-size: 18px; margin-right: 8px;">Trier par</label>
+      <select tabindex="0" name="sortedOption" id="sortByOptions" class="sortByOptions" style="font-weight: 600; font-size: 20px;">
         <option value="date">Date</option>
         <option value="popularite">Popularité</option>
         <option value="titre">Titre</option>
       </select>
     </div>
-    <div id="photographerdetail"></div>
+
     <div id="media"></div>
 
   </main>
@@ -96,6 +102,7 @@
     </div>
   </footer>
   <script type="module" src="/scripts/pages/photographer.js"></script>
+  <script src="/scripts/factories//photographer.js"></script>
   <script src="/scripts/utils/contactForm.js"></script>
   <script type="module" src="./scripts/utils/lightbox.js"></script>
 
