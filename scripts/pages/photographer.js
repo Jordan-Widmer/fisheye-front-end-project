@@ -215,7 +215,10 @@ function sortMedia(sortedBy) {
   }
 
   if (sortedBy == "title") {
-    mediatoSort.sort();
+    console.log("sorting....");
+    mediatoSort.sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
   }
 
   return { sortedMedia: mediatoSort, sortedBy };
