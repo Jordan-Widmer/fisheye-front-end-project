@@ -33,6 +33,10 @@ body {
   cursor: pointer;
 }
 
+.contact_button:hover, :focus {
+  background-color: #DB8876;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #DB8876;

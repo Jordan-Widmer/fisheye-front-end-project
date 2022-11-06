@@ -56,8 +56,6 @@ a {
     transition: color 300ms;
 }
 
-
-
 .photographer_section div h4 {
     color: red;
     font-size: 20px;
@@ -95,7 +93,10 @@ a {
 
 .photographer_section div a:hover h2 {
     color: #901C1C;
+}
 
+.photographer_section div a:focus h2 {
+    color: #901C1C;
 }
 
 .photographer_section div img:hover {

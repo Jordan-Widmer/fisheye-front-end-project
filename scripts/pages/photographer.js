@@ -189,9 +189,7 @@ async function getPhotographers() {
   await onload();
 })();
 
-document
-  .getElementById("sortByOptions")
-  .addEventListener("change", function () {
+document.getElementById("sortByOptions").addEventListener("change", function () {
     const { sortedMedia, sortedBy } = sortMedia(this.value);
 
     showMediaCards(sortedMedia, photographer[0]);
