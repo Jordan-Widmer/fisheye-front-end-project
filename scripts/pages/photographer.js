@@ -14,13 +14,16 @@ function getFolderName(name) {
 
 async function onload() {
   id = getIdFromURL();
-  const { media, photographers } = await getPhotographers();
+  const { media, photographers } = await getPhotographers(); // Récupération des données
+
+  // Filtre les données
   photoMedia = media.filter((f) => f.photographerId == id);
   photographer = photographers.filter((f) => f.id == id);
 
-  renderPhotographer(photographer, photoMedia);
+  renderPhotographer(photographer, photoMedia); // Affichage des données via "renderPhotographer"
 }
 
+// Créations d'element rajouter au DOM.
 function renderPhotographer(photographer, photoMedia) {
   if (photographer.length > 0) {
     const photographerr = photographer[0];
@@ -34,7 +37,7 @@ function renderPhotographer(photographer, photoMedia) {
     photographerImage.alt = photographerr.name;
     photographerImage.classList.add("photographer-img");
 
-    // creating photographer detials
+    // Création des détails liés au photographe
     const photographerName = document.createElement("h4");
     photographerName.textContent = photographerr.name;
     photographerName.classList.add("photographer_name");
@@ -73,11 +76,11 @@ function showMediaCards(photoMedia, photographerr) {
   let totalLikes = 0;
   photoMedia.forEach((m) => {
     totalLikes += m.likes;
-    const cardDiv = document.createElement("div");
+    const cardDiv = document.createElement("div"); // Utilisation de la doc pour créer les éléments
     const cardBody = document.createElement("div");
     const heading = document.createElement("h5");
     const cardIcons = document.createElement("div");
-    cardIcons.classList.add("card-icons");
+    cardIcons.classList.add("card-icons"); // Utilisation de classList.add pour manipuler les Class du DOM.
     const icon = document.createElement("i");
     const countSpan = document.createElement("span");
     cardDiv.classList.add("card");
@@ -111,6 +114,8 @@ function showMediaCards(photoMedia, photographerr) {
     icon.setAttribute("tabindex", 0);
     countSpan.textContent = m.likes;
     countSpan.id = m.id;
+
+    // Événement au click
     icon.addEventListener(
       "click",
       () => {
@@ -120,6 +125,8 @@ function showMediaCards(photoMedia, photographerr) {
           likeCounts.innerHTML = +likeCounts.innerHTML + 1;
           let index = photoMedia.findIndex((x) => x.id == m.id);
           photoMedia[index].likes = +photoMedia[index].likes + 1;
+
+          // Affiche le nombre total de like
           showLikes(
             +document.getElementsByClassName("bottom_bar_likes_number")[0]
               .innerHTML + 1
@@ -129,6 +136,7 @@ function showMediaCards(photoMedia, photographerr) {
       { once: true }
     );
 
+    // Événement au clavier
     icon.addEventListener(
       "keydown",
       function (event) {
@@ -139,6 +147,8 @@ function showMediaCards(photoMedia, photographerr) {
             likeCounts.innerHTML = +likeCounts.innerHTML + 1;
             let index = photoMedia.findIndex((x) => x.id == m.id);
             photoMedia[index].likes = +photoMedia[index].likes + 1;
+
+            // Affiche le nombre total de like
             showLikes(
               +document.getElementsByClassName("bottom_bar_likes_number")[0]
                 .innerHTML + 1
@@ -160,6 +170,8 @@ function showMediaCards(photoMedia, photographerr) {
   showLikes(totalLikes);
   initLightHouse();
 }
+
+// Fonctionnalité montrant le nombre total de like du profil
 function showLikes(totalLikes) {
   if (document.getElementsByClassName("bottom_bar_likes_number")) {
     document.getElementsByClassName("bottom_bar_likes_number")[0].innerHTML =
@@ -189,7 +201,9 @@ async function getPhotographers() {
   await onload();
 })();
 
-document.getElementById("sortByOptions").addEventListener("change", function () {
+document
+  .getElementById("sortByOptions")
+  .addEventListener("change", function () {
     const { sortedMedia, sortedBy } = sortMedia(this.value);
 
     showMediaCards(sortedMedia, photographer[0]);
@@ -197,23 +211,25 @@ document.getElementById("sortByOptions").addEventListener("change", function () 
     initLightHouse();
   });
 
+// Fonctionnalité appliquant le trie sur articles
 function sortMedia(sortedBy) {
   const mediatoSort = [...photoMedia];
   if (sortedBy == "popularite") {
+    // by popularity
     console.log("d selected...");
     mediatoSort.sort(function (a, b) {
       return b.likes - a.likes;
     });
   }
   if (sortedBy == "date") {
-    console.log("d selected...");
+    console.log("d selected..."); // by Date
     mediatoSort.sort(function (a, b) {
       return new Date(b.date) - new Date(a.date);
     });
   }
 
   if (sortedBy == "title") {
-    console.log("sorting....");
+    console.log("sorting...."); // by Alphabetic
     mediatoSort.sort(function (a, b) {
       return a.title.localeCompare(b.title);
     });

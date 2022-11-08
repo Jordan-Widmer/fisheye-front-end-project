@@ -3,6 +3,7 @@ function photographerFactory(data) {
 
   const picture = `../../assets/images/Photographers ID Photos/${portrait}`;
 
+  // Création d'un objet pour chaque photographe a affiché sur l'écran
   function getUserCardDOM() {
     const div = document.createElement("div");
     div.classList.add("photographer__container");

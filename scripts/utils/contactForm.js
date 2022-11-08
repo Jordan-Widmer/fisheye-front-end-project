@@ -1,3 +1,4 @@
+// Ouverture de la modale
 function displayModal() {
   const modal = document.getElementById("modal_contact");
   modal.style.display = "block";
@@ -20,6 +21,7 @@ async function checkFormValidation(fields) {
   }
 }
 
+// Fermeture de la modale
 function closeModal() {
   const modal = document.getElementById("modal_contact");
   modal.style.display = "none";

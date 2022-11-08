@@ -207,6 +207,7 @@ export async function nextElement(currentSource) {
     }
   }
 }
+
 async function changeTabIndexesBehindLightbox(tabIndexValue) {
   const searchbox = document.getElementById("sortByOptions");
 

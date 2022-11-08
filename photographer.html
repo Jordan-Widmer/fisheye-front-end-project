@@ -51,20 +51,24 @@
         </div>
         <form action="photographer_page.html" method="get">
           <div class="form-group">
-            <label for="">Prénom</label>
-            <input class="form-field" type="text">
+            <label for="first">Prénom</label>
+            <input class="form-field" aria-labelledby="first" type="text" name="first" minlength="2"
+              placeholder="veuillez saisir votre prenom" autocomplete="off" required>
           </div>
           <div class="form-group">
-            <label for="">Nom</label>
-            <input class="form-field" type="text">
+            <label for="last">Nom</label>
+            <input class="form-field" aria-labelledby="last" type="text" name="last" minlength="2"
+              placeholder="veuillez saisir votre nom" autocomplete="off" required>
           </div>
           <div class="form-group">
-            <label for="">E-mail</label>
-            <input class="form-field" type="text">
+            <label for="email">E-mail</label>
+            <input class="form-field" aria-labelledby="email" type="email" name="email"
+              placeholder="veuillez saisir une adresse email valide" autocomplete="off" required>
           </div>
           <div class="form-group">
-            <label for="">Votre message</label>
-            <textarea class="form-field"></textarea>
+            <label for="message">Votre message</label>
+            <textarea class="form-field" aria-labelledby="message" name="message" placeholder="Votre message ici"
+              autocomplete="off" required></textarea>
           </div>
           <div>
             <input class="submit_button" id="contact-submit-button" type="submit" value="Envoyer le formulaire">
@@ -105,6 +109,8 @@
       <h2 class="bottom_bar_price" aria-label="Prix journalier du photographe"></h2>
     </div>
   </footer>
+
+  <!-- Importation des fichiers Javascript -->
   <script type="module" src="/scripts/pages/photographer.js"></script>
   <script src="/scripts/factories//photographer.js"></script>
   <script src="/scripts/utils/contactForm.js"></script>
