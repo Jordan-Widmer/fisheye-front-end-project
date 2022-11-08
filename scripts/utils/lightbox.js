@@ -1,3 +1,4 @@
+// S'actionne quand l'utilisateur va clicker sur le bouton
 export function initLightHouse() {
   const lightboxModalContent = document.getElementById("lightbox_modal-inner");
   lightboxModalContent.setAttribute("aria-hidden", "false");
@@ -100,11 +101,13 @@ export function initLightHouse() {
   nextButton.tabIndex = "0";
 }
 
+// S'exécute pour afficher l'image dans la lightbox
 function openLightBoxModal() {
   document.getElementById("lightbox_modal").style.display = "block";
   changeTabIndexesBehindLightbox("-1");
 }
 
+// Ferme la lightbox
 function closeLightBoxModal() {
   document.getElementsByClassName("lightbox_modal")[0].style.display = "none";
   document.getElementById("imagecontainer").innerHTML = "";
@@ -138,6 +141,8 @@ function getMediaType(media) {
   const type = media.split(".").slice(1).pop();
   return type === "mp4" ? "video" : "image";
 }
+
+// Fonction qui va afficher l'image precedente
 export async function previousElement(currentSource) {
   const galleryElements = document.querySelectorAll(".card");
   const previewButton = document.getElementById("previewbutton");
@@ -181,6 +186,8 @@ async function getSourceOrImageOrVideo(content, fromimage) {
   }
   return contentSource;
 }
+
+// S'occupe d'afficher l'image suivante
 export async function nextElement(currentSource) {
   const nextButton = document.getElementById("nextbutton");
   const galleryElements = document.querySelectorAll(".card");
