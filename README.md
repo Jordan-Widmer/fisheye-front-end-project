@@ -8,14 +8,14 @@ There is nothing to install. Simply open the index.html file to run the project.
 
 ## Repository Structure
 
-• `.vscode`
-• `assets`
-• `css`
-• `data`
-• `scripts`
-• `.eslintrc.json`
-• `.gitignore`
-• `package-lock.json`
-• `package.json`
-• `photographer.html`
-• `README.md`
+• `.vscode`               
+• `assets`    
+• `css`   
+• `data`    
+• `scripts`   
+• `.eslintrc.json`    
+• `.gitignore`    
+• `package-lock.json`   
+• `package.json`    
+• `photographer.html`   
+• `README.md`   
